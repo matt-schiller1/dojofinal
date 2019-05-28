@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Desination Details</title>
+</head>
+
+<body>
+  <div class="container">
+    <p><a href="/dashboard">Home</a> | <a href="/logout">Logout</a></p>
+
+    <h2>{{ trips.destination }}</h2>
+    <p>Planned By: {{ trips.created_by.name }} </p>
+    <p>Description: {{ trips.description }}</p>
+    <p>Travel Date From: {{ trips.datefrom }}</p>
+    <p>Travel Date To: {{ trips.dateto }}</p>
+  </div>
+
+  <div class="container">
+    <h2>({{ trips.join.all | length}}) other users joining the trip</h2>
+    <ul>
+      {% for user in trips.join.all %}
+      <li>{{ user.name }} </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Travel Dashboard</title>
+</head>
+
+<body>
+  <div class="container">Hello, {{ user_info.name }}! <a href="/logout">Logout</a></div>
+  <hr>
+  <div class="container">
+    <p>Your Trip Schedules</p>
+    <table border=1>
+      <tr>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+      </tr>
+      {% for trip in trips %}
+      <tr>
+        <td><a href="/trips/{{trip.id}}">{{ trip.destination }}</a></td>
+        <td>{{ trip.datefrom }}</td>
+        <td>{{ trip.dateto }}</td>
+        <td>{{ trip.description }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="container"><br>
+    <p>Other User's Travel Plans</p>
+    <table border=1>
+      <tr>
+        <th>Name</th>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Do You Want To Join?</th>
+      </tr>
+      {% for other in othertrips %}
+      <tr>
+        <td>{{ other.created_by.name }}</td>
+        <td><a href="/trips/{{ other.id }}">{{ other.destination }}</a></td>
+        <td>{{ other.datefrom }}</td>
+        <td>{{ other.dateto }}</td>
+        <td>{% if other.join.all|length == 1 %}Joined!{%else%}<a href="/join/{{other.id}}">Join</a>{%endif%}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="/addplan">Add Travel Plan</a>
+  </div>
+</body>
+
+</html>
