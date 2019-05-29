@@ -39,13 +39,10 @@ class UserManager(models.Manager):
   
   def trip_validation(self, postData):
     errors = {}
-    print(postData['datefrom'], "===================================")
     if datetime.datetime.strptime(postData['datefrom'], "%Y-%m-%d") > datetime.datetime.strptime(postData['dateto'], "%Y-%m-%d"):
       errors['date'] = "Return date must be later than depart date"
     if datetime.datetime.strptime(postData['datefrom'], "%Y-%m-%d") < datetime.datetime.now():
       errors['datepast'] = "Trips need to be in the future"
-    if len(postData['datefrom']) or len(postData['dateto']) == 0:
-      errors['dates'] = "Please enter valid dates"
     if len(postData['destination']) < 3:
       errors['destination'] = "Destinations must be 3 characters"
     if len(postData['description']) < 3:

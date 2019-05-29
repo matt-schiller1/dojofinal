@@ -48,7 +48,8 @@
         <td><a href="/trips/{{ other.id }}">{{ other.destination }}</a></td>
         <td>{{ other.datefrom }}</td>
         <td>{{ other.dateto }}</td>
-        <td>{% if other.join.all|length == 1 %}Joined!{%else%}<a href="/join/{{other.id}}">Join</a>{%endif%}</td>
+        <td><a href="/join/{{other.id}}">Join</a>
+        </td>
       </tr>
       {% endfor %}
     </table>
